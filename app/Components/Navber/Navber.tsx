@@ -38,7 +38,7 @@ const Navber = () => {
           <p className="overlay-sub">WELCOME TO DEPOT</p>
 
           <nav className="overlay-menu">
-            <Link href="/">HOMEPAGE</Link>
+            <Link href="/homepage">HOMEPAGE</Link>
             <Link href="/shop">SHOP</Link>
             <Link href="/landing">LANDING PAGE</Link>
             <Link href="/contact">CONTACT US</Link>
