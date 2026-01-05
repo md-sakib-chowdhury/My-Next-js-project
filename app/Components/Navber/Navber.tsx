@@ -8,6 +8,11 @@ import "./navber.css";
 const Navber = () => {
   const [open, setOpen] = useState(false);
 
+  // Menu close করার function
+  const handleLinkClick = () => {
+    setOpen(false);
+  };
+
   return (
     <>
       {/* ===== NAVBAR ===== */}
@@ -38,10 +43,18 @@ const Navber = () => {
           <p className="overlay-sub">WELCOME TO DEPOT</p>
 
           <nav className="overlay-menu">
-            <Link href="/homepage">HOMEPAGE</Link>
-            <Link href="/shop">SHOP</Link>
-            <Link href="/landing">LANDING PAGE</Link>
-            <Link href="/contact">CONTACT US</Link>
+            <Link href="/homepage" onClick={handleLinkClick}>
+              HOMEPAGE
+            </Link>
+            <Link href="/shop" onClick={handleLinkClick}>
+              SHOP
+            </Link>
+            <Link href="/landing" onClick={handleLinkClick}>
+              LANDING PAGE
+            </Link>
+            <Link href="/contact" onClick={handleLinkClick}>
+              CONTACT US
+            </Link>
           </nav>
         </div>
       </div>
@@ -49,4 +62,4 @@ const Navber = () => {
   );
 };
 
-export default Navber;
+export default Navber; 

@@ -1,61 +1,96 @@
-import Image from "next/image";
+"use client";
 
-export default function HomeHero() {
+import Image from "next/image";
+import { useEffect, useState } from "react";
+
+// ✅ Correct paths from app/homepage/Home.tsx
+import chair1 from "../Assets/chair.png";
+import chair2 from "../Assets/chair 2.png";
+import chair3 from "../Assets/chair 3.png";
+
+export default function Home() {
+  const images = [chair1, chair2, chair3];
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Auto slider
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="relative bg-gray-50 min-h-screen flex items-center">
       <div className="container mx-auto px-[10%] grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        
-        {/* LEFT SIDE - Text Content */}
-        <div className="space-y-8">
-          {/* Navigation Numbers */}
+
+        {/* LEFT CONTENT */}
+        <div className="space-y-10">
+          {/* Numbers */}
           <div className="space-y-4 text-sm">
-            <div className="flex items-center gap-3">
-              <span className="font-bold text-black">01</span>
-              <div className="h-px w-16 bg-black"></div>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="font-light text-gray-400">02</span>
-              <div className="h-px w-12 bg-gray-300"></div>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="font-light text-gray-400">03</span>
-              <div className="h-px w-12 bg-gray-300"></div>
-            </div>
+            {[1, 2, 3].map((num, i) => (
+              <div key={i} className="flex items-center gap-3">
+                <span
+                  className={
+                    currentIndex === i
+                      ? "font-bold text-black"
+                      : "font-light text-gray-400"
+                  }
+                >
+                  0{num}
+                </span>
+                <div
+                  className={`h-px ${
+                    currentIndex === i
+                      ? "w-16 bg-black"
+                      : "w-12 bg-gray-300"
+                  }`}
+                />
+              </div>
+            ))}
           </div>
 
-          {/* Main Heading */}
-          <div className="mt-16">
+          {/* Heading */}
+          <div>
             <h1 className="text-5xl lg:text-6xl font-light text-gray-900 mb-6">
               THINK DIFFERENT.
             </h1>
             <p className="text-gray-500 text-lg leading-relaxed max-w-md">
-              Depot is a unique & captivating theme designed specifically for all types of shops and online stores.
+              Depot is a unique & captivating theme designed specifically for all
+              types of shops and online stores.
             </p>
           </div>
         </div>
 
-        {/* RIGHT SIDE - Chair Image */}
+        {/* RIGHT IMAGE */}
         <div className="relative flex items-center justify-center">
-          <div className="relative w-full max-w-2xl">
-            {/* Temporarily using a placeholder - replace with your chair image */}
-            <div className="w-full h-96 bg-gray-200 flex items-center justify-center">
-              <p className="text-gray-500">Chair Image Here</p>
-            </div>
-            
-            {/* Floating Buttons */}
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 flex flex-col gap-4">
-              <button className="bg-red-500 text-white px-6 py-3 text-xs font-bold uppercase tracking-wider hover:bg-red-600 transition-colors shadow-lg">
-                RELATED
-              </button>
-              <button className="bg-white text-gray-900 px-6 py-3 text-xs font-bold uppercase tracking-wider hover:bg-gray-100 transition-colors shadow-lg flex items-center gap-2">
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
-                </svg>
-                BUY NOW
-              </button>
+          <div className="relative w-full max-w-2xl h-[400px]">
+            <Image
+              src={images[currentIndex]}
+              alt={`Chair ${currentIndex + 1}`}
+              fill
+              priority
+              className="object-contain"
+            />
+
+            {/* Dots */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+              {images.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentIndex(i)}
+                  className={`h-2 rounded-full transition-all ${
+                    i === currentIndex
+                      ? "w-8 bg-black"
+                      : "w-2 bg-gray-300"
+                  }`}
+                />
+              ))}
             </div>
           </div>
         </div>
+
       </div>
     </section>
   );
