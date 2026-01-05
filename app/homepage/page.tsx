@@ -1,9 +1,9 @@
-import HomeHero from "./Home";
+import HomePage from "./Home";
 
-export default function HomePage() {
+export default function Page() {
   return (
     <div>
-      <HomeHero />
+      <HomePage />
     </div>
   );
 }
