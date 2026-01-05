@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -22,42 +22,45 @@ export default function HomePage() {
   return (
     <>
       {/* ================= NAVBAR ================= */}
-      <header className="bg-white border-b border-gray-200">
-        <div className="relative max-w-[1400px] mx-auto px-10 h-20 flex items-center justify-between">
+      <header className="bg-white border-b border-gray-400">
+  <div className="relative w-full h-20 flex items-center justify-end pr-10">
 
-          {/* Left Menu */}
-          <nav className="flex gap-8 text-xs tracking-[3px] uppercase text-gray-800">
-            <a href="#">Home</a>
-            <a href="#" className="font-medium">Shop</a>
-            <a href="#">Pages</a>
-            <a href="#">Elements</a>
-          </nav>
+    {/* Left Menu (Right-Aligned) */}
+    <nav className="flex gap-8 text-xs tracking-[3px] uppercase text-gray-800">
+      <a href="#">Home</a>
+      <a href="#" className="font-medium">Shop</a>
+      <a href="#">Pages</a>
+      <a href="#">Elements</a>
+    </nav>
 
-          {/* Center Logo */}
-          <h1 className="absolute left-1/2 -translate-x-1/2 text-2xl tracking-[6px] font-semibold">
-            DEPOT
-          </h1>
+    {/* Center Logo */}
+    <h1 className="absolute left-1/2 -translate-x-1/2 text-2xl tracking-[6px] font-semibold">
+      DEPOT
+    </h1>
 
-          {/* Right */}
-          <div className="flex items-center gap-6 text-xs tracking-widest">
-            <span>CART ($0)</span>
-            <span className="flex items-center gap-1">
-              <User size={16} /> LOGIN
-            </span>
-            <Search size={16} />
-            <Menu size={18} />
-          </div>
-        </div>
-      </header>
+    {/* Right Side */}
+    <div className="flex items-center gap-6 text-xs tracking-widest ml-6">
+      <span>CART ($0)</span>
+      <span className="flex items-center gap-1">
+        <User size={16} /> LOGIN
+      </span>
+      <Search size={16} />
+      <Menu size={18} />
+    </div>
+  </div>
+</header>
+
 
       {/* ================= HERO ================= */}
-      <section className="relative min-h-[90vh] bg-gray-50 flex items-center overflow-hidden">
-        <div className="w-full px-[8%] grid grid-cols-1 lg:grid-cols-2 items-center">
+      <section className="relative min-h-[90vh] flex items-center justify-center bg-gray-50">
+        {/* Wide White Background Box */}
+        <div className="w-[90%] bg-white rounded-xl shadow-lg flex flex-col lg:flex-row items-center overflow-hidden">
 
           {/* LEFT SIDE */}
-          <div className="flex gap-16">
+          <div className="flex flex-col lg:flex-row items-center lg:items-start gap-10 p-12 lg:w-1/2">
+            
             {/* Numbers */}
-            <div className="flex flex-col gap-6 pt-10">
+            <div className="flex flex-col gap-6">
               {[1, 2, 3].map((num, i) => (
                 <div key={i} className="flex items-center gap-4">
                   <span
@@ -81,8 +84,8 @@ export default function HomePage() {
             </div>
 
             {/* Text */}
-            <div className="max-w-md pt-20">
-              <h1 className="text-6xl font-light tracking-wide mb-8">
+            <div className="max-w-md">
+              <h1 className="text-6xl font-light tracking-wide mb-6">
                 THINK DIFFERENT.
               </h1>
               <p className="text-gray-500 leading-relaxed">
@@ -93,13 +96,12 @@ export default function HomePage() {
           </div>
 
           {/* RIGHT IMAGE */}
-          <div className="relative h-[500px] lg:h-[600px] flex justify-end">
+          <div className="relative lg:w-1/2 h-[800px] flex justify-center items-center  border-gray-200 p-6">
             <Image
               src={images[currentIndex]}
               alt="Chair"
-              fill
+              className="object-contain w-full h-full"
               priority
-              className="object-contain"
             />
 
             {/* Dots */}
@@ -117,6 +119,7 @@ export default function HomePage() {
               ))}
             </div>
           </div>
+
         </div>
       </section>
     </>
